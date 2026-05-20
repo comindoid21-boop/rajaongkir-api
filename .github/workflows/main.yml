@@ -1,0 +1,16 @@
+name: Deploy to Railway
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Railway
+        uses: devenv/railway-deploy-action@v1
+        with:
+          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          railway_project_id: ${{ secrets.RAILWAY_PROJECT_ID }}
