@@ -9,8 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Install Railway
+        run: npm install -g @railway/cli
       - name: Deploy to Railway
-        uses: devenv/railway-deploy-action@v1
-        with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-          railway_project_id: ${{ secrets.RAILWAY_PROJECT_ID }}
+        run: railway up --detach
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
